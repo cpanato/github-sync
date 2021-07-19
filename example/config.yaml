@@ -1,0 +1,22 @@
+users:
+- username: cpanato
+  role: admin
+  email: dont@honk.at.me
+- username: honk_user
+  role: admin
+  email: test4@example.com
+
+repositories:
+- name: playground
+  collaborators:
+  - username: username_1
+    email: test@example.com
+    permission: push
+  - username: username_2
+    email: test2@example.com
+    permission: push
+- name: another_repo
+  collaborators:
+  - username: username_3
+    email: test3@example.com
+    permission: push
