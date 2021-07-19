@@ -16,7 +16,8 @@ type Collaborator struct {
 	Email      string `yaml:"email"`
 	Permission string `yaml:"permission"`
 }
+
 type Repository struct {
-	Name          string         `yaml:"name"`
 	Collaborators []Collaborator `yaml:"collaborators"`
+	Name          string         `yaml:"name"`
 }

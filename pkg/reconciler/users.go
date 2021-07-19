@@ -13,8 +13,8 @@ import (
 func (r *Reconciler) reconcileUsers(dryRun bool) ([]Action, []error) {
 	missingUsers := map[string]*config.User{}
 
-	var actions []Action
-	var errors []error // nolint: prealloc
+	var actions []Action // nolint: prealloc
+	var errors []error   // nolint: prealloc
 
 	for _, c := range r.users.byUsername {
 		missingUsers[c.Username] = c

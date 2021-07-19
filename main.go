@@ -12,19 +12,16 @@ import (
 )
 
 type options struct {
-	dryRun                bool
-	allowInsecureSHA1     bool
-	allowInsecureTLS      bool
-	ignoreDefaultChannels bool
-	config                string
-	authConfig            string
+	dryRun     bool
+	config     string
+	authConfig string
 }
 
 func parseOptions() options {
 	var o options
 	flag.BoolVar(&o.dryRun, "dry-run", true, "does nothing if true (which is the default)")
 	flag.StringVar(&o.config, "config", "", "path to a configuration file, or directory of files")
-	flag.StringVar(&o.authConfig, "auth", "auth.json", "path to mattermost auth")
+	flag.StringVar(&o.authConfig, "auth", "auth.json", "path to github auth config")
 	flag.Parse()
 	return o
 }
