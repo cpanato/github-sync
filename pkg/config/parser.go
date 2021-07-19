@@ -34,13 +34,13 @@ func (p *Parser) Parse(reader io.Reader, path string) error {
 		return fmt.Errorf("failed to parse yaml: %v", err)
 	}
 
-	// nolint: gocritic
-	// channels, err := mergeChannels(p.Config.Channels, c.Channels)
-	// if err != nil {
-	// 	return fmt.Errorf("couldn't merge channels: %v", err)
-	// }
-	p.Config.Users = c.Users
-	p.Config.Repositories = c.Repositories
+	if c.Users != nil {
+		p.Config.Users = append(p.Config.Users, c.Users...)
+	}
+
+	if c.Repositories != nil {
+		p.Config.Repositories = append(p.Config.Repositories, c.Repositories...)
+	}
 
 	return nil
 }
@@ -78,6 +78,7 @@ func (p *Parser) ParseDir(path string) error {
 			return err
 		}
 	}
+
 	return nil
 }
 
@@ -86,6 +87,7 @@ func ParseFile(path string) (Config, error) {
 	if err := p.ParseFile(path, path); err != nil {
 		return Config{}, err
 	}
+
 	return p.Config, nil
 }
 
@@ -94,39 +96,6 @@ func ParseDir(path string) (Config, error) {
 	if err := p.ParseDir(path); err != nil {
 		return Config{}, err
 	}
+
 	return p.Config, nil
 }
-
-// nolint: gocritic
-// func matchesRegexList(s string, tests []*regexp.Regexp) bool {
-// 	for _, r := range tests {
-// 		if r.MatchString(s) {
-// 			return true
-// 		}
-// 	}
-// 	return false
-// }
-
-// func mergeChannels(a []Channel, b []Channel) ([]Channel, error) {
-// 	names := map[string]struct{}{}
-// 	ids := map[string]struct{}{}
-// 	for _, v := range a {
-// 		names[v.Name] = struct{}{}
-// 		if v. != "" {
-// 			ids[v.ID] = struct{}{}
-// 		}
-// 	}
-// 	for _, v := range b {
-// 		if v.Name == "" {
-// 			return nil, fmt.Errorf("channels must have names")
-// 		}
-// 		if _, ok := names[v.Name]; ok {
-// 			return nil, fmt.Errorf("cannot overwrite channel definitions (duplicate channel name %s)", v.Name)
-// 		}
-// 		if _, ok := ids[v.ID]; ok {
-// 			return nil, fmt.Errorf("cannot overwrite channel definitions (duplicate channel ID %s)", v.Name)
-// 		}
-// 	}
-
-// 	return append(a, b...), nil
-// }
