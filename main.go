@@ -58,7 +58,7 @@ func main() {
 	strDict := map[string]bool{}
 	for _, value := range p.Config.Users {
 		if _, exist := strDict[value.Username]; exist {
-			log.Fatalf("Reconciliation failed: Username duplicate in config file. Username is unique: username = %s", value.Username)
+			log.Fatalf("Reconciliation failed: Username duplicate in config file. Username must be unique unique: username = %s", value.Username)
 		} else {
 			strDict[value.Username] = true
 		}
@@ -67,7 +67,7 @@ func main() {
 	strDictRepo := map[string]bool{}
 	for _, repo := range p.Config.Repositories {
 		if _, exist := strDictRepo[repo.Name]; exist {
-			log.Fatalf("Reconciliation failed: Repository duplicate in config file. Repository is unique: Repository = %s", repo.Name)
+			log.Fatalf("Reconciliation failed: Repository duplicate in config file. Repository must be unique unique: Repository = %s", repo.Name)
 		} else {
 			strDictRepo[repo.Name] = true
 		}
@@ -75,7 +75,7 @@ func main() {
 		strDictCollab := map[string]bool{}
 		for _, value := range repo.Collaborators {
 			if _, exist := strDictCollab[value.Username]; exist {
-				log.Fatalf("Reconciliation failed: Username duplicate in config file. Username is unique: username = %s", value.Username)
+				log.Fatalf("Reconciliation failed: Username duplicate in config file. Username must be unique unique: username = %s", value.Username)
 			} else {
 				strDictCollab[value.Username] = true
 			}
