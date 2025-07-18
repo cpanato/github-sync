@@ -1,10 +1,18 @@
 module github.com/cpanato/github-sync
 
-go 1.16
+go 1.23.0
 
 require (
 	github.com/bmatcuk/doublestar/v3 v3.0.0
 	github.com/google/go-github/v35 v35.2.0
-	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c
+	golang.org/x/oauth2 v0.27.0
 	sigs.k8s.io/yaml v1.2.0
+)
+
+require (
+	github.com/google/go-querystring v1.0.0 // indirect
+	github.com/kr/pretty v0.1.0 // indirect
+	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9 // indirect
+	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
